@@ -1,0 +1,8 @@
+# 不上传到公开仓库的本地文件
+selfie.jpg
+photo-extended.png
+fonts.html
+font/fixedsys/
+font/ibm-vga/
+font/c64/
+font/ms-sans-serif/

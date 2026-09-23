@@ -1,55 +1,90 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Yangzi Chen</title>
-  <style>
-    .image-container img {
-      width: 170px;
-      height: 160px;
-      transition: opacity 0.3s ease;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yangzi Chen</title>
+<!-- 搜索引擎用的信息：description = 谷歌结果里标题下面那段灰字；JSON-LD 里的 name = 结果顶上的"网站名"（只在根域名 yangziiiiichen.github.io 上生效）。 -->
+<meta name="description" content="Yangzi Chen is a fourth-year PhD candidate in Psychology at the University of Toronto, working with Dr. Kaori Takehara-Nishiuchi on associative memory and the entorhinal cortex.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+<link rel="shortcut icon" href="favicon.ico">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Yangzi Chen",
+  "url": "https://yangziiiiichen.github.io/"
+}
+</script>
+<!-- 唯一的样式：只设字体。
+     当前字体：Ark Pixel 10px 方舟像素 by TakWolf，https://github.com/TakWolf/ark-pixel-font ，OFL 1.1（font/ark-pixel/OFL.txt），只保留了拉丁字母。
 
-    .image-container img:hover {
-      content: url('showmaker.jpg'); 
-    }
-  </style>
+     换备选字体：改下面的 @font-face 的 src，以及 body 里的 --n（原生字号）和 --lh（行高），单位都是"字体像素"。
+       Fixedsys Excelsior    src:url("font/fixedsys/FSEX302.woff2")                 --n:16  --lh:16
+       IBM VGA 8x16          src:url("font/ibm-vga/Web437_IBM_VGA_8x16.woff")       --n:16  --lh:16
+       C64 Pro Mono          src:url("font/c64/C64_Pro_Mono-STYLE.woff2")           --n:8   --lh:10
+       MS Sans Serif (Win95) src:url("font/ms-sans-serif/ms_sans_serif.woff2")      --n:11  --lh:13
+       Ark Pixel 12px        src:url("font/ark-pixel/ark-pixel-12px-latin-subset.woff2")  --n:12  --lh:16
+       Ark Pixel 10px (当前) src:url("font/ark-pixel/ark-pixel-10px-latin-subset.woff2")  --n:10  --lh:14
+     五种放在一起的对比见 fonts.html（各字体授权也写在那里）。 -->
+<style>
+  @font-face{
+    font-family:"Pixel";
+    src:url("font/ark-pixel/ark-pixel-10px-latin-subset.woff2");
+  }
+  /* --px = 一个字体像素在 CSS 里的大小，由脚本设置，保证每个字体像素 = 整数个屏幕像素，不糊。 */
+  :root{ --px:1px; }
+  body{
+    --n:10; --lh:13;
+    margin:calc(8 * var(--px));
+    max-width:max(50vw, 30em);   /* 文字只占屏幕左半边（窄屏手机上至少 30 个字宽） */
+    font-family:"Pixel", monospace;
+    -webkit-font-smoothing:none; font-smooth:never;
+  }
+  body, pre{
+    font-size:calc(var(--n) * var(--px));
+    line-height:calc(var(--lh) * var(--px));
+  }
+  pre{ margin:0; font-family:inherit; white-space:pre-wrap; }   /* pre-wrap：不手动换行，一段写成一行，只在放不下时自动折行 */
+  /* 左上角照片：photo.jpg（由 photo-extended.png 以人物为中心裁成竖图、转黑白、模糊、褪色+颗粒），宽 80 x 高 104 个字体像素
+     相框：double 双线边框，总宽 6 = 线 2 + 空 2 + 线 2（字体像素），box-sizing:content-box 所以边框加在照片外面 */
+  .photo{ float:left; width:calc(80 * var(--px)); height:calc(104 * var(--px));
+          border:calc(6 * var(--px)) double #000;
+          margin:0 calc(12 * var(--px)) 0 0; }   /* 浮在左边，文字从右边和下面绕过去 */
+  /* 底部图标：16x16 像素画（icons/*.svg），每个图标像素 = 一个字体像素，不糊。 */
+  .links{ clear:both; margin-top:calc(16 * var(--px)); display:flex; gap:calc(8 * var(--px)); }
+  .links img{ display:block; width:calc(16 * var(--px)); height:calc(16 * var(--px)); image-rendering:pixelated; }
+</style>
+<script>
+  /* SCALE = 每个字体像素至少占几个物理像素。想要更大更粗的像素点就改成 2 或 3。 */
+  var SCALE = 1;
+  function snap(){
+    var dpr = window.devicePixelRatio || 1;
+    var n = Math.max(SCALE, Math.ceil(dpr - 0.01));   /* 非整数缩放时往上取整 */
+    document.documentElement.style.setProperty('--px', (n / dpr) + 'px');
+  }
+  snap();
+  window.addEventListener('resize', snap);   /* 浏览器缩放 (Ctrl +/-) 时重算 */
+</script>
 </head>
 <body>
-  <table summary="Table for page layout." id="tlayout">
-    <tr valign="top">
-      <td id="layout-menu">
-        <div class="menu-category">Menu</div>
-        <div class="menu-item"><a href="index.html" class="current">Home</a></div>
-        <div class="menu-item"><a href="https://github.com/YangziiiiiChen">GitHub</a></div>
-      </td>
-      <td id="layout-content">
-        <div id="toptitle">
-          <h1>Yangzi Chen (陈杨子) </h1>
-        </div>
-        <table class="imgtable">
-          <tr>
-            <td>
-              <a href="https://YangziiiiiChen.github.io/" class="image-container">
-                <img src="HZ_009141.JPG"/>
-              </a>&nbsp;
-            </td>
-            <td align="left">
-              <p><b>PhD Student, </b> <br />
-                Behavioural Neuroscience, <b>University of Toronto, St. George Campus</b> <br />
-              </p>
-            </td>
-          </tr>
-        </table>
-        <h2>About me</h2>
-        <p>
-          I am currently pursuing a PhD in psychology at University of Toronto in Takehara Lab. 
-          Previously, I received the B.S. degree in Psychology from Peking University in 2023.
-        </p>
-      </td>
-    </tr>
-  </table>
+<img class="photo" src="photo.jpg" alt="Yangzi Chen">
+<pre>
+Hi, I'm Yangzi Chen. I'm a fourth-year PhD candidate in Psychology at the University of Toronto, where I work with <a href="https://www.takeharalab.com/">Dr. Kaori Takehara-Nishiuchi</a>.
+
+My research uses mouse models to study associative memory, with a focus on how the entorhinal cortex interacts with the hippocampus and neocortex as a single network.
+
+I grew up in <a href="https://www.google.com/maps/search/?api=1&amp;query=Dangyang%2C+Hubei%2C+China">Dangyang</a>, a city in Hubei Province in central China. Prior to Toronto, I did my undergraduate degree in psychology at Yuanpei College, Peking University. I enjoy films, TV shows, and music. I love the Coen brothers and Jarmusch, and I miss the old Kanye.
+</pre>
+
+<!-- 底部链接：href 是链接地址，title 是鼠标悬停时显示的名字。
+     图标是 icons/ 里的 16x16 像素画，想改图案可以直接改 svg 里的 rect。 -->
+<p class="links">
+  <a href="mailto:yangzi.chen@mail.utoronto.ca" title="Email"><img src="icons/email.svg" alt="Email"></a>
+  <a href="https://www.linkedin.com/in/yangzi-chen-3aa3b7248/" title="LinkedIn"><img src="icons/linkedin.svg" alt="LinkedIn"></a>
+  <a href="https://www.douban.com/people/198448874/" title="Douban"><img src="icons/douban.svg" alt="Douban"></a>
+  <a href="https://scholar.google.com/citations?user=lHbwv3kAAAAJ&amp;hl=en" title="Google Scholar"><img src="icons/scholar.svg" alt="Google Scholar"></a>
+</p>
 </body>
 </html>
