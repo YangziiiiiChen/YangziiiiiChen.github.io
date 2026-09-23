@@ -39,15 +39,16 @@
   body{
     --n:10; --lh:13;
     margin:calc(8 * var(--px));
-    max-width:max(50vw, 30em);   /* 文字只占屏幕左半边（窄屏手机上至少 30 个字宽） */
+    max-width:calc(300 * var(--px));   /* 整体宽度上限 300 个字体像素（约 50 个字符），文字集中在左边；手机上自动变窄 */
     font-family:"Pixel", monospace;
     -webkit-font-smoothing:none; font-smooth:never;
   }
-  body, pre{
+  body, .text p{
     font-size:calc(var(--n) * var(--px));
     line-height:calc(var(--lh) * var(--px));
   }
-  pre{ margin:0; font-family:inherit; white-space:pre-wrap; }   /* pre-wrap：不手动换行，一段写成一行，只在放不下时自动折行 */
+  /* 正文：每段一个 <p>，段落间距 8 个字体像素（比一整行空行 13 小一点） */
+  .text p{ margin:0 0 calc(8 * var(--px)); }
   /* 左上角照片：photo.jpg（由 photo-extended.png 以人物为中心裁成竖图、转黑白、模糊、褪色+颗粒），宽 80 x 高 104 个字体像素
      相框：double 双线边框，总宽 6 = 线 2 + 空 2 + 线 2（字体像素），box-sizing:content-box 所以边框加在照片外面 */
   .photo{ float:left; width:calc(80 * var(--px)); height:calc(104 * var(--px));
@@ -71,13 +72,11 @@
 </head>
 <body>
 <img class="photo" src="photo.jpg" alt="Yangzi Chen">
-<pre>
-Hi, I'm Yangzi Chen. I'm a fourth-year PhD candidate in Psychology at the University of Toronto, where I work with <a href="https://www.takeharalab.com/">Dr. Kaori Takehara-Nishiuchi</a>.
-
-My research uses mouse models to study associative memory, with a focus on how the entorhinal cortex interacts with the hippocampus and neocortex as a single network.
-
-I grew up in <a href="https://www.google.com/maps/search/?api=1&amp;query=Dangyang%2C+Hubei%2C+China">Dangyang</a>, a city in Hubei Province in central China. Prior to Toronto, I did my undergraduate degree in psychology at Yuanpei College, Peking University. I enjoy films, TV shows, and music. I love the Coen brothers and Jarmusch, and I miss the old Kanye.
-</pre>
+<div class="text">
+<p>Hi, I'm Yangzi Chen. I'm a fourth-year PhD candidate in Psychology at the University of Toronto, where I work with <a href="https://www.takeharalab.com/" style="white-space:nowrap">Dr. Kaori Takehara-Nishiuchi</a>.</p>
+<p>My research uses mouse models to study associative memory, with a focus on how the entorhinal cortex interacts with the hippocampus and neocortex as a single network.</p>
+<p>I grew up in <a href="https://www.google.com/maps/search/?api=1&amp;query=Dangyang%2C+Hubei%2C+China">Dangyang</a>, a city in Hubei Province in central China. Prior to Toronto, I did my undergraduate degree in psychology at Yuanpei College, Peking University. I enjoy films, TV shows, and music. I love the Coen brothers and Jarmusch, and I miss the old Kanye.</p>
+</div>
 
 <!-- 底部链接：href 是链接地址，title 是鼠标悬停时显示的名字。
      图标是 icons/ 里的 16x16 像素画，想改图案可以直接改 svg 里的 rect。 -->
